@@ -1,69 +1,133 @@
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# frozen_string_literal: true
 
-ruby '2.5.1'
+source "https://rubygems.org"
+ruby "2.5.1"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
-gem 'webpacker-react', "~> 0.3.2"
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+gem "rails", "5.2.1"
+gem "puma", "~> 3.8"
+gem "pg"
+gem "jbuilder", "~> 2.6.3"
+gem "devise"
+gem "devise_invitable", "~> 1.7.0"
+gem "redis", "~> 4.0"
+gem "hiredis"
+gem "redis-namespace"
+gem "sass-rails"
+gem "jquery-rails"
+gem "uglifier"
+gem "bootstrap-sass"
+gem "font-awesome-sass"
+gem "simple_form"
+gem "autoprefixer-rails"
+gem "faker", "~> 1.9.1"
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary", "~> 0.12.3"
+gem "paperclip", "~> 5.2.1" # File uploads
+gem "paperclip-cloudinary"
+gem "cloudinary"
+gem "bootstrap-datepicker-rails"
+gem "remotipart", git: "https://github.com/mshibuya/remotipart.git"
+gem "rubyzip", ">= 1.2.2"
+gem "zip-zip"
+gem "select2-rails", "~> 4.0", ">= 4.0.3"
+gem "combine_pdf" # sert a consolider des pdfs venant de differentes sources
+gem "sidekiq"
+gem "sidekiq-failures", git: "https://github.com/mhfs/sidekiq-failures.git"
+gem "postmark-rails"
+gem "hubspot-ruby", git: "https://github.com/Berardpi/hubspot-ruby.git", branch: "deal-and-company-all"
+gem "google-api-client", "~> 0.24.3"
 
-# Use CoffeeScript for .coffee assets and views
-# gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# For React
+gem "webpacker", "~> 3.5"
+gem "webpacker-react", "~> 0.3.2"
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+# Notifiers
+gem "exception_notification"
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# authorization library
+gem "cancancan", "~> 2.2.0"
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem "bulk_insert"
 
+# Pass Rails variables to JS
+gem "gon"
 
+gem "rails-i18n"
+gem "i18n-js"
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+gem "file_validators"
+
+gem "nokogiri"
+gem "premailer-rails"
+
+gem "seeuletter", "~> 1.1" # API client for seeuletter (physical mails)
+gem "attr_encrypted", "~> 3.0.0" # Used to encrypt API keys stored in the database
+
+gem "whenever"
+
+gem "awesome_print"
+gem "savon", "~> 2.12.0" # SOAP client
+
+gem "currency-in-words" # Convert amount in word for formal wording
+gem "slack-ruby-client" # Slack messages
+
+gem "pdf-reader" # Count pages of a pdf
+
+# Gocardless
+gem "oauth2"
+gem "gocardless_pro"
+
+# Geocoding
+gem "geocoder"
+
+# Country manipulation
+gem "countries", "~> 2.1"
+
+# Temporary action cable fix
+# https://github.com/faye/websocket-driver-ruby/issues/58
+gem "websocket-driver", git: "https://github.com/faye/websocket-driver-ruby", ref: "ee39af83d03ae3059c775583e4c4b291641257b8"
+
+gem "rack-timeout"
+
+# String distance utils
+gem "damerau-levenshtein"
+gem "diff-lcs"
+
+gem "serviceworker-rails"
+
+# BIC code <> bank information
+gem "iso-swift", git: "https://github.com/hugolantaume/iso-swift.git", branch: "master"
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-
-  gem 'foreman'
+  gem "foreman"
+  gem "letter_opener" # sert a faker les envois d'email en development. au lieu d'envoyer un email, letter open ouvre un nouveau tab
 end
 
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+group :development, :test do
+  gem "rubocop"
+  gem "test-prof"
+  gem "figaro"
+  gem "parallel_tests"
+  gem "database_cleaner"
+  gem "better_errors"
+  gem "pry-byebug"
+  gem "bullet"
+  gem "pry-rails"
+  gem "spring"
+  gem "listen", "~> 3.0.5"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "factory_bot_rails", "~> 4.0"
+  gem "railroady"
+  gem "rspec-rails"
+  gem "rspec-retry"
+  gem "simplecov"
+  gem "rails-controller-testing"
+
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "chromedriver-helper"
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+group :staging, :development do
+  gem "recipient_interceptor"
+end
