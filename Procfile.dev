@@ -1,0 +1,3 @@
+web: rails s -p 3000 -b lvh.me
+
+js: ./bin/webpack-dev-server
